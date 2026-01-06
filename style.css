@@ -1,0 +1,198 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Changed to default monospace */
+    font-family: monospace;
+    /* Enforcing a uniform weight for the whole site */
+    font-weight: 400;
+    background-color: #f0f0f0;
+    padding: 2rem 0;
+    color: #333;
+}
+
+/* Master Wrapper with Padding */
+.site-container {
+    width: 40%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    min-width: 640px;
+    flex-direction: column;
+    gap: 10px; /* Optional: Adds a small gap between the header, nav, and content */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+/* Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    background-color: #e8e8e8;
+    width: 100%;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+/* Titles: Allowing them to be bigger but keeping monospace */
+h1, h2, h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    /* weight remains 400 or bold depending on your preference,
+       standard titles are bold by default, added here for clarity */
+    font-weight: bold;
+}
+
+/* Navbar: Centered with equal overhang */
+.main-nav {
+    /* Make it wider than the 60% container */
+    width: 100.5%;
+
+    /* Move it left by half of the excess width */
+    /* (104% - 100%) / 2 = 2% */
+    margin-left: -0.25%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Ensures the ULs fill the new width */
+    position: relative;
+    z-index: 5; /* Keeps it above the container shadow if necessary */
+    border-radius: 4px;
+}
+
+/* Ensure the list items don't stretch the text back to the middle */
+.main-nav ul {
+    width: 100%;
+    display: flex;
+    list-style: none;
+    padding: 0 1rem;
+    align-items: flex-start; /* Aligns items to the top of the container */
+}
+
+.main-nav a {
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+    /* Overriding previous 'bold' to match content weight */
+    font-weight: normal;
+    text-transform: none; /* Removed uppercase for a cleaner monospace look */
+}
+
+/* Top Tier */
+.primary-menu {
+    background-color: #333;
+    border-bottom: 2px solid #555;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+/* Top Tier Styling */
+.primary-menu a {
+    color: #fff;
+    /* Small offset from top, large padding at bottom to maintain height */
+    padding: 0.5rem 1.5rem 2.5rem 1.5rem;
+    font-weight: normal;
+    font-size: 0.9rem;
+    background-color: transparent; /* Default state */
+    transition: background 0.2s;
+}
+
+/* Hover Shading for Top Tier */
+.primary-menu a:hover {
+    background-color: #444; /* Dark gray highlight */
+    text-decoration: none;  /* Keep it clean for monospace */
+}
+
+/* Bottom Tier */
+.secondary-menu {
+    background-color: #e0e0e0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+/* Bottom Tier (Sub-navbar) Styling */
+.secondary-menu a {
+    color: #444;
+    /* Small offset from top, larger padding at bottom */
+    padding: 0.3rem 1.2rem 1.3rem 1.2rem;
+    font-size: 0.85rem;
+    background-color: transparent;
+    transition: background 0.2s;
+}
+
+/* Hover Shading for Bottom Tier */
+.secondary-menu a:hover {
+    background-color: #d8d8d8; /* Slightly darker than the pale bar */
+    text-decoration: none;
+}
+
+/* Content Area */
+.content-wrapper {
+    flex: 1;
+    padding: 3rem;
+}
+
+.main-content {
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+}
+
+/* Footer */
+.page-footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: #d0d0d0;
+    font-size: 0.85rem;
+    width: 100%;
+
+    /* Rounds only the bottom corners */
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+
+/* */
+
+/* Two Column Layout */
+.two-columns {
+    display: flex;
+    gap: 2rem; /* Space between the two columns */
+    align-items: flex-start;
+}
+
+.column-left, .column-right {
+    flex: 1; /* Makes them equally sized (50% each) */
+}
+
+/* Image Placeholder Styling */
+.image-placeholder {
+    width: 100%;
+    height: 150px;
+    border: 1px dashed #999; /* Outline represention */
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: #888;
+    font-size: 0.8rem;
+    /* Keeping the monospace feel */
+}
+
+.image-placeholder:last-child {
+    margin-bottom: 0;
+}
+
+/* Ensure the layout stacks on very small screens */
+@media (max-width: 768px) {
+    .two-columns {
+        flex-direction: column;
+    }
+}
