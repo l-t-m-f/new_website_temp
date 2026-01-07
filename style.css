@@ -10,133 +10,277 @@ body {
     font-family: monospace;
     /* Enforcing a uniform weight for the whole site */
     font-weight: 400;
-    background-color: #f0f0f0;
+
+    background-image: url('bgtile.png');
+    background-repeat: repeat; /* This is the default, but good to be explicit */
+    background-size: 340px;
+
     padding: 2rem 0;
     color: #333;
 }
 
 /* Master Wrapper with Padding */
 .site-container {
-    width: 40%;
-    margin: 0 auto;
-    background-color: #ffffff;
-    min-height: 100vh;
+    background-color: #eeeee4; /* Your container color */
+    border-radius: 9px;
     display: flex;
-    min-width: 640px;
     flex-direction: column;
     gap: 10px; /* Optional: Adds a small gap between the header, nav, and content */
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    position: relative; /* REQUIRED so the antenna can pin to it */
+    margin: 105px auto 0;
+    min-height: 80vh;
+    min-width: 540px;
+    max-width: 960px;
+    width: 60%;
 }
 
-/* Header */
+/* The Antenna Styling */
+.antenna-offset {
+    position: absolute;
+    /* This pulls the image 100px above the top of the container */
+    top: -100px;
+    left: 40px; /* Position it on the left side, or use right: 40px */
+
+    width: 60px; /* Size of your image */
+    height: auto;
+    z-index: 20; /* High z-index to stay above the header */
+
+    /* Ensure it doesn't get cut off if the container has overflow:hidden */
+    pointer-events: none;
+}
+
+.promo-ribbons {
+    position: absolute;
+    right: -25px; /* Pulls them halfway off the edge */
+    top: 250px; /* Vertical start position */
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Space between ribbons */
+    z-index: 100; /* Stay on top of everything */
+}
+
+/* Base Ribbon Style */
+.ribbon {
+    border: 2px solid #333;
+    border-radius: 0 7px 0 5px;
+    box-shadow: 4px 4px 0px #333;
+    color: yellow;
+    display: block;
+    padding: 10px 20px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    transform: skew(3deg);
+    white-space: nowrap;
+}
+
+.ribbon-1 {
+    background-color: orangered;
+}
+
+.ribbon-2 {
+    background-color: orangered;
+}
+
+.ribbon-3 {
+    background-color: #11d4ef;
+    color: #333;
+}
+
+.ribbon:hover {
+    transform: skew(6deg) translateX(-3px);
+    box-shadow: 2px 2px 0px #333;
+    color: #333;
+}
+
 .page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem;
-    background-color: #e8e8e8;
+    padding: .5rem 2rem 2rem 2rem;
+    background-color: #eeeee4;
+    min-height: 120px;
     width: 100%;
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
 }
 
-/* Titles: Allowing them to be bigger but keeping monospace */
 h1, h2, h3 {
     font-size: 2rem;
     margin-bottom: 1rem;
-    /* weight remains 400 or bold depending on your preference,
-       standard titles are bold by default, added here for clarity */
     font-weight: bold;
 }
 
-/* Navbar: Centered with equal overhang */
+/* Navbar - Main Container */
 .main-nav {
-    /* Make it wider than the 60% container */
-    width: 100.5%;
-
-    /* Move it left by half of the excess width */
-    /* (104% - 100%) / 2 = 2% */
-    margin-left: -0.25%;
-
     display: flex;
     flex-direction: column;
-    align-items: stretch; /* Ensures the ULs fill the new width */
     position: relative;
-    z-index: 5; /* Keeps it above the container shadow if necessary */
-    border-radius: 4px;
+    z-index: 5;
+    /* Work together to make the navbar pour from the page on either sides.*/
+    margin-left: -0.25%;
+    width: 100.5%;
 }
 
-/* Ensure the list items don't stretch the text back to the middle */
+@keyframes flash-yellow {
+    0% {
+        opacity: 1;
+    }
+    10% {
+        opacity: 1;
+    }
+    40% {
+        opacity: .5;
+    }
+    50% {
+        opacity: 0;
+    }
+    60% {
+        opacity: .5;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.welcome-text {
+    color: yellow;
+    font-family: monospace;
+    line-height: 1.2;
+    position: absolute;
+    text-align: right;
+    right: 75px;
+    top: 10px;
+    width: 100px; /* Force wrapping */
+    z-index: 11;
+    /* Animation: */
+    animation: flash-yellow 1.6s infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.offset-nav-image {
+    position: absolute;
+    /* Negative values pull the image OUTSIDE the container */
+    top: -8px; /* Pulls it up */
+    right: -17px; /* Pulls it right */
+
+    width: 80px; /* Adjust size as needed */
+    height: 80px;
+    z-index: 10; /* Ensures it stays on top of the menu */
+
+    /* Optional: style to make it pop */
+    border: 3px solid white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+/* Navbar - Links */
+.main-nav a {
+    color: #11d4ef;
+    display: block;
+    font-size: 1rem;
+    font-weight: normal;
+    border-radius: .5rem;
+    padding: .65rem 1.5rem 2.04rem 1.5rem;
+    text-decoration: none;
+    text-transform: none;
+    transition: background 0.317s;
+}
+
+.main-nav a:hover {
+    background-color: #1111ed;
+    text-decoration: none;
+}
+
+/* Navbar - Unordered lists */
 .main-nav ul {
-    width: 100%;
+    align-items: center;
     display: flex;
     list-style: none;
-    padding: 0 1rem;
-    align-items: flex-start; /* Aligns items to the top of the container */
+    padding: 0 .25rem;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
-.main-nav a {
-    text-decoration: none;
-    display: block;
-    transition: background 0.2s;
-    /* Overriding previous 'bold' to match content weight */
-    font-weight: normal;
-    text-transform: none; /* Removed uppercase for a cleaner monospace look */
-}
-
-/* Top Tier */
+/* Navbar - Primary menu */
 .primary-menu {
-    background-color: #333;
-    border-bottom: 2px solid #555;
+    align-items: center;
+    background-color: blue;
+    border-bottom: 3px solid orangered;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    display: flex;
+    list-style: none;
+    min-height: 90px;
 }
 
-/* Top Tier Styling */
 .primary-menu a {
-    color: #fff;
-    /* Small offset from top, large padding at bottom to maintain height */
-    padding: 0.5rem 1.5rem 2.5rem 1.5rem;
-    font-weight: normal;
-    font-size: 0.9rem;
-    background-color: transparent; /* Default state */
-    transition: background 0.2s;
+    font-size: 1.1rem;
 }
 
-/* Hover Shading for Top Tier */
-.primary-menu a:hover {
-    background-color: #444; /* Dark gray highlight */
-    text-decoration: none;  /* Keep it clean for monospace */
-}
-
-/* Bottom Tier */
+/* Secondary Menu (Bottom Tier) */
 .secondary-menu {
-    background-color: #e0e0e0;
+    background-color: blue;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0 1.5rem;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
 }
 
-/* Bottom Tier (Sub-navbar) Styling */
 .secondary-menu a {
-    color: #444;
-    /* Small offset from top, larger padding at bottom */
-    padding: 0.3rem 1.2rem 1.3rem 1.2rem;
-    font-size: 0.85rem;
-    background-color: transparent;
-    transition: background 0.2s;
+    padding: .4rem 1.12rem .88rem 1.12rem;
+    margin: .5rem 0rem;
 }
 
-/* Hover Shading for Bottom Tier */
-.secondary-menu a:hover {
-    background-color: #d8d8d8; /* Slightly darker than the pale bar */
-    text-decoration: none;
-}
 
 /* Content Area */
 .content-wrapper {
     flex: 1;
-    padding: 3rem;
+    padding: .3rem 5rem .25rem 2rem;
+}
+
+.scroll-area {
+    max-height: calc(100vh - 350px);
+    overflow-y: auto;
+    margin-left: 5px;
+    margin-right: 20px;
+    padding: 0rem 2rem;
+    scrollbar-color: #ccccc4 transparent;
+    scrollbar-arrow-color: red;
+    scrollbar-width: thin;
+}
+
+/* Style the scrollbar to look like a floating line */
+.scroll-area::-webkit-scrollbar {
+    width: 4px;
+}
+
+.scroll-area::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.scroll-area::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.scroll-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scroll-area::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .main-content {
@@ -145,17 +289,86 @@ h1, h2, h3 {
     font-size: 1rem;
 }
 
+.graffiti-title {
+    position: relative;
+    display: inline-block; /* Keeps the hit-box tight to the text */
+    font-size: 3.5rem;
+    transform: rotate(-3deg) scale(1.1);
+    color: orangered;
+    cursor: default;
+    font-family: 'Sedgwick Ave Display', cursive;
+    text-shadow: 2px 5px 0px #2bb866;
+    outline-color: #11d4ef;
+    z-index: 1;
+    left: 5px; /* Slight offset */
+    top: 10px; /* Appears "under" it */
+}
+
+.breadcrumb-container {
+    padding: .67rem 5rem 0rem 2rem;
+    background: transparent;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.breadcrumb-list {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    font-size: 0.67rem;
+    font-family: monospace;
+}
+
+.breadcrumb-list li {
+    display: flex;
+    align-items: center;
+    color: #666;
+}
+
+.breadcrumb-list li a {
+    color: blue;
+    text-decoration: none;
+}
+
+.breadcrumb-list li a:hover {
+    text-decoration: underline;
+    color: orangered;
+}
+
+/* The Arrows */
+.breadcrumb-list li:not(:last-child)::after {
+    content: "→"; /* You can use ">" or "»" if you prefer */
+    margin: 0 10px;
+    color: #999;
+    font-weight: bold;
+}
+
+/* Current Page (Last item) */
+.breadcrumb-list li:last-child {
+    font-weight: bold;
+    color: #333;
+}
+
 /* Footer */
 .page-footer {
     text-align: center;
-    padding: 2rem;
-    background-color: #d0d0d0;
-    font-size: 0.85rem;
+    padding: .25rem;
+    background-color: darkblue;
+    font-size: 0.78rem;
     width: 100%;
 
     /* Rounds only the bottom corners */
     border-bottom-left-radius: 9px;
     border-bottom-right-radius: 9px;
+}
+
+.page-footer p {
+    color: yellow;
+}
+
+.page-footer .red-footer-text {
+    color: red;
 }
 
 /* */
@@ -190,9 +403,113 @@ h1, h2, h3 {
     margin-bottom: 0;
 }
 
-/* Ensure the layout stacks on very small screens */
 @media (max-width: 768px) {
-    .two-columns {
+    /* 1. Container - Allow it to shrink but keep padding */
+    .site-container {
+        width: 92%;
+        min-width: auto;
+        margin: 80px auto 0;
+    }
+
+    /* 2. The "Overflowing" Navbar Style */
+    .main-nav {
+        margin-left: -2%; /* This makes it wider than the site-container */
+        width: 104%; /* Total width over 100% to spill out both sides */
+        background-color: blue;
+        padding: 15px 10px;
+        border-radius: 12px;
+        position: relative;
+        z-index: 10;
+    }
+
+    /* 3. Header inside the Nav */
+    .offset-nav-image {
+        position: static;
+        display: block;
+        margin: 0 5px 5px auto;
+        width: 50px;
+        height: 50px;
+        border: 2px solid white;
+        border-radius: 5px;
+    }
+
+    .welcome-text {
+        position: static;
+        width: 100%;
+        text-align: right;
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+
+    .primary-menu {
+        gap: 5px;
+        min-height: auto;
+        padding: 0 0 1rem 0;
+    }
+
+    .primary-menu a {
+        margin-bottom: .5rem;
+    }
+
+    .secondary-menu {
+        gap: 5px;
+        min-height: auto;
+        padding-top: 10px;
+    }
+
+    .main-nav li {
+        width: 100%;
+    }
+
+    .main-nav a {
+        padding: 10px;
+        font-size: 1rem;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.15); /* Slight definition for the "buttons" */
+        border-radius: 6px;
+    }
+
+    .secondary-menu a {
+        font-size: .78rem;
+    }
+
+    .content-wrapper {
+        padding: 0 1rem;
+        display: flex;
         flex-direction: column;
     }
+
+    .scroll-area {
+        max-height: none;
+        margin: 0;
+        padding: 0;
+        overflow-y: visible;
+    }
+
+    .promo-ribbons {
+        position: relative;
+        float: right;
+        margin: 0px -40px 20px 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        width: fit-content;
+        top: 0;
+        right: 0;
+    }
+
+    .ribbon {
+        transform: skew(3deg);
+        text-align: left;
+        width: 100%; /* Makes them consistent if you add specific widths */
+        padding: .23rem 1.2rem .23rem .23rem;
+    }
+
+    .graffiti-title {
+        margin-top: 0 !important;
+        display: inline; /* This is the secret to wrapping text around a float */
+    }
+
+
 }
