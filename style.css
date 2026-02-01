@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+html {
+     /* Always show the vertical scrollbar */
+     overflow-y: scroll;
+ }
+
 body {
     /* Changed to default monospace */
     font-family: monospace;
@@ -225,7 +230,7 @@ h1, h2, h3 {
 /* Secondary Menu (Bottom Tier) */
 .secondary-menu {
     background-color: blue;
-    min-height: 45px;
+    min-height: 55px;
     display: flex;
     align-items: center;
     list-style: none;
