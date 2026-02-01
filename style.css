@@ -32,7 +32,7 @@ body {
     flex-direction: column;
     gap: 10px; /* Optional: Adds a small gap between the header, nav, and content */
     position: relative; /* REQUIRED so the antenna can pin to it */
-    margin: 105px auto 0;
+    margin: 90px auto 0;
     min-height: 80vh;
     min-width: 540px;
     max-width: 960px;
@@ -42,17 +42,24 @@ body {
 /* The Antenna Styling */
 .antenna-offset {
     position: absolute;
-    /* This pulls the image 100px above the top of the container */
-    top: -100px;
-    left: 40px; /* Position it on the left side, or use right: 40px */
-
-    width: 60px; /* Size of your image */
-    height: auto;
+    top: -72px;
+    left: 140px; /* Position it on the left side, or use right: 40px */
     z-index: 20; /* High z-index to stay above the header */
-
-    /* Ensure it doesn't get cut off if the container has overflow:hidden */
     pointer-events: none;
 }
+
+.signature-offset {
+    position: absolute;
+    top: 0;
+    left: -14px;
+}
+
+.ltmf-offset {
+    position: absolute;
+    top: -105px;
+    right: 7px;
+}
+
 
 .promo-ribbons {
     position: absolute;
@@ -105,7 +112,7 @@ body {
     align-items: center;
     padding: .5rem 2rem 2rem 2rem;
     background-color: #eeeee4;
-    min-height: 120px;
+    min-height: 80px;
     width: 100%;
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
@@ -170,17 +177,10 @@ h1, h2, h3 {
 .offset-nav-image {
     position: absolute;
     /* Negative values pull the image OUTSIDE the container */
-    top: -8px; /* Pulls it up */
+    top: -16px; /* Pulls it up */
     right: -17px; /* Pulls it right */
 
-    width: 80px; /* Adjust size as needed */
-    height: 80px;
     z-index: 10; /* Ensures it stays on top of the menu */
-
-    /* Optional: style to make it pop */
-    border: 3px solid white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    background-color: white;
 }
 
 /* Navbar - Links */
@@ -190,7 +190,7 @@ h1, h2, h3 {
     font-size: 1rem;
     font-weight: normal;
     border-radius: .5rem;
-    padding: .65rem 1.5rem 2.04rem 1.5rem;
+    padding: .25rem 1.5rem 1.04rem 1.5rem;
     text-decoration: none;
     text-transform: none;
     transition: background 0.317s;
@@ -220,7 +220,7 @@ h1, h2, h3 {
     border-top-right-radius: 4px;
     display: flex;
     list-style: none;
-    min-height: 90px;
+    min-height: 70px;
 }
 
 .primary-menu a {
@@ -240,7 +240,7 @@ h1, h2, h3 {
 }
 
 .secondary-menu a {
-    padding: .4rem 1.12rem .88rem 1.12rem;
+    padding: .25rem 1.12rem 1.04rem 1.12rem;
     margin: .5rem 0rem;
 }
 
@@ -432,10 +432,6 @@ h1, h2, h3 {
         position: static;
         display: block;
         margin: 0 5px 5px auto;
-        width: 50px;
-        height: 50px;
-        border: 2px solid white;
-        border-radius: 5px;
     }
 
     .welcome-text {
